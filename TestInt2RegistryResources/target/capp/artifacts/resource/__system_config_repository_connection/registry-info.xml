@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><resources>
+    <collection>
+        <directory>connection</directory>
+        <path>/_system/config/repository/connection</path>
+    </collection>
+</resources>

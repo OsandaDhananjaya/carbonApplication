@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><resources>
+    <collection>
+        <directory>inbound</directory>
+        <path>/_system/config/repository/esb/inbound</path>
+    </collection>
+</resources>

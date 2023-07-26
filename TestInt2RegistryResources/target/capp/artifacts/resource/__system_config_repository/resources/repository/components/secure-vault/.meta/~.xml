@@ -1,0 +1,3 @@
+<resource name="components" isCollection="true" path="/_system/config/repository/components" registryUrl="https://localhost:9443/registry">
+   <mediaType/>
+<creator>admin</creator><lastUpdater>admin</lastUpdater><description/><uuid/></resource>

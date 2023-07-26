@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<artifacts>
+   <artifact name="__system_config_" groupId="com.example.resource" version="1.0.0" type="registry/resource" serverRole="EnterpriseIntegrator">
+      <collection>
+         <directory>/_system/config/</directory>
+         <path>/_system/config/</path>
+         <properties>
+            <property key="registry.user" value="admin"/>
+            <property key="registry.author" value="wso2.system.user"/>
+            <property key="registry.link" value="true"/>
+            <property key="registry.mount" value="true"/>
+            <property key="registry.realpath" value="https://localhost:9443/registry/resourceContent?path=/_system/eiconfig"/>
+         </properties>
+      </collection>
+   </artifact>
+   <artifact name="__system_config_users" groupId="com.example.resource" version="1.0.0" type="registry/resource" serverRole="EnterpriseIntegrator">
+      <collection>
+         <directory>/_system/config/users</directory>
+         <path>/_system/config/users</path>
+         <properties>
+            <property key="registry.user" value="admin"/>
+            <property key="registry.author" value="wso2.system.user"/>
+            <property key="registry.link" value="true"/>
+            <property key="registry.mount" value="true"/>
+            <property key="registry.realpath" value="https://localhost:9443/registry/resourceContent?path=/_system/eiconfig/users"/>
+         </properties>
+      </collection>
+   </artifact>
+   <artifact name="__system_config_repository" groupId="com.example.resource" version="1.0.0" type="registry/resource" serverRole="EnterpriseIntegrator">
+      <collection>
+         <directory>/_system/config/repository</directory>
+         <path>/_system/config/repository</path>
+         <properties>
+            <property key="registry.user" value="admin"/>
+            <property key="registry.author" value="wso2.system.user"/>
+            <property key="registry.link" value="true"/>
+            <property key="registry.mount" value="true"/>
+            <property key="registry.realpath" value="https://localhost:9443/registry/resourceContent?path=/_system/eiconfig/repository"/>
+         </properties>
+      </collection>
+   </artifact>
+   <artifact name="__system_config_repository_connection" groupId="com.example.resource" version="1.0.0" type="registry/resource" serverRole="EnterpriseIntegrator">
+      <collection>
+         <directory>/_system/config/repository/connection</directory>
+         <path>/_system/config/repository/connection</path>
+         <properties>
+            <property key="registry.user" value="admin"/>
+            <property key="registry.author" value="wso2.system.user"/>
+            <property key="registry.link" value="true"/>
+            <property key="registry.mount" value="true"/>
+            <property key="registry.realpath" value="https://localhost:9443/registry/resourceContent?path=/_system/eiconfig/repository/connection"/>
+         </properties>
+      </collection>
+   </artifact>
+   <artifact name="__system_config_repository_esb" groupId="com.example.resource" version="1.0.0" type="registry/resource" serverRole="EnterpriseIntegrator">
+      <collection>
+         <directory>/_system/config/repository/esb</directory>
+         <path>/_system/config/repository/esb</path>
+         <properties>
+            <property key="registry.user" value="admin"/>
+            <property key="registry.author" value="wso2.system.user"/>
+            <property key="registry.link" value="true"/>
+            <property key="registry.mount" value="true"/>
+            <property key="registry.realpath" value="https://localhost:9443/registry/resourceContent?path=/_system/eiconfig/repository/esb"/>
+         </properties>
+      </collection>
+   </artifact>
+   <artifact name="__system_config_repository_esb_esb-configurations" groupId="com.example.resource" version="1.0.0" type="registry/resource" serverRole="EnterpriseIntegrator">
+      <collection>
+         <directory>/_system/config/repository/esb/esb-configurations</directory>
+         <path>/_system/config/repository/esb/esb-configurations</path>
+         <properties>
+            <property key="registry.user" value="wso2.system.user"/>
+            <property key="registry.author" value="wso2.system.user"/>
+            <property key="registry.link" value="true"/>
+            <property key="registry.mount" value="true"/>
+            <property key="registry.realpath" value="https://localhost:9443/registry/resourceContent?path=/_system/eiconfig/repository/esb/esb-configurations"/>
+         </properties>
+      </collection>
+   </artifact>
+   <artifact name="__system_config_repository_esb_registry" groupId="com.example.resource" version="1.0.0" type="registry/resource" serverRole="EnterpriseIntegrator">
+      <collection>
+         <directory>/_system/config/repository/esb/registry</directory>
+         <path>/_system/config/repository/esb/registry</path>
+         <properties>
+            <property key="registry.user" value="admin"/>
+            <property key="registry.author" value="wso2.system.user"/>
+            <property key="registry.link" value="true"/>
+            <property key="registry.mount" value="true"/>
+            <property key="registry.realpath" value="https://localhost:9443/registry/resourceContent?path=/_system/eiconfig/repository/esb/registry"/>
+         </properties>
+      </collection>
+   </artifact>
+   <artifact name="__system_config_repository_esb_inbound" groupId="com.example.resource" version="1.0.0" type="registry/resource" serverRole="EnterpriseIntegrator">
+      <collection>
+         <directory>/_system/config/repository/esb/inbound</directory>
+         <path>/_system/config/repository/esb/inbound</path>
+         <properties>
+            <property key="registry.user" value="admin"/>
+            <property key="registry.author" value="wso2.system.user"/>
+            <property key="registry.link" value="true"/>
+            <property key="registry.mount" value="true"/>
+            <property key="registry.realpath" value="https://localhost:9443/registry/resourceContent?path=/_system/eiconfig/repository/esb/inbound"/>
+         </properties>
+      </collection>
+   </artifact>
+   <artifact name="__system_config_repository_components" groupId="com.example.resource" version="1.0.0" type="registry/resource" serverRole="EnterpriseIntegrator">
+      <collection>
+         <directory>/_system/config/repository/components</directory>
+         <path>/_system/config/repository/components</path>
+         <properties>
+            <property key="registry.user" value="admin"/>
+            <property key="registry.author" value="wso2.system.user"/>
+            <property key="registry.link" value="true"/>
+            <property key="registry.mount" value="true"/>
+            <property key="registry.realpath" value="https://localhost:9443/registry/resourceContent?path=/_system/eiconfig/repository/components"/>
+         </properties>
+      </collection>
+   </artifact>
+   <artifact name="__system_config_repository_components_secure-vault" groupId="com.example.resource" version="1.0.0" type="registry/resource" serverRole="EnterpriseIntegrator">
+      <collection>
+         <directory>/_system/config/repository/components/secure-vault</directory>
+         <path>/_system/config/repository/components/secure-vault</path>
+         <properties>
+            <property key="registry.user" value="admin"/>
+            <property key="registry.author" value="wso2.system.user"/>
+            <property key="DW.DB.Password" value="OlSeTBiwd4x5XTpLac/j20q3jPe49ON+4d/bPld9G1B/s3FGvwtJ+AHtfOYe9SlbqXMLAdzUGpA7
+TvovrIijLiqN1EuIZ9yP7yZS/Hv2+xHH5DiiTQm+oVH4iLguY5WxOes8cMCm/i5FZp2eSzX/5T9c
+7rYhsjSBBsR1Fac8lbgoes7sk11qdPh5HfMvBzePS6A6sTk7xKp7SpQm8SdEsySH/+EuNzXhM5Mg
+Gt8tx2c2SVKlZ6zNGWRAU/k/kN4iUGaVtEtwBYgz4+zawZf+RuuSvjDEi8W91rHIlgz+ETLUceDG
+oOs/9DaVz6W7t08kQC5dR0vHL4r374G6zEptOw=="/>
+            <property key="registry.link" value="true"/>
+            <property key="registry.mount" value="true"/>
+            <property key="registry.realpath" value="https://localhost:9443/registry/resourceContent?path=/_system/eiconfig/repository/components/secure-vault"/>
+            <property key="test" value="W2urNPDmb3rhF9lvLfON57HLb6NrN8d08elA4OaRYXQbHp6LVAqNDID5ucNloTJtnw6MOxrisRX/
+JtAspB/HXEM2bzdXwzuIa2r4JdzxKqNloLgHSgD2/xe/7vuTHCG5NVNCrufnSUbdflITfIYxwJAL
+cBQ0arStS5AOOFYsrfl8Iap891xyny3KBuqNn1Sbf4dN7Bwvvp/7ZYFXD/jEUO9aK8tP0KwTDLLh
+kwpNDvKVCMGPiwkRCoI1d0bKZbEKyBPcXR5bfhmxzhsIeaYMK0F+sCJPrZ21lWM9B2AHTo2i13gr
+Hn3uR1+uht3UDTmTqlOHuJKDuJWLH/LdCibIjQ=="/>
+         </properties>
+      </collection>
+   </artifact>
+   <artifact name="__system_config_repository_components_secure-vault_sub" groupId="com.example.resource" version="1.0.0" type="registry/resource" serverRole="EnterpriseIntegrator">
+      <collection>
+         <directory>/_system/config/repository/components/secure-vault/sub</directory>
+         <path>/_system/config/repository/components/secure-vault/sub</path>
+         <properties>
+            <property key="registry.user" value="admin"/>
+            <property key="registry.author" value="wso2.system.user"/>
+            <property key="registry.link" value="true"/>
+            <property key="registry.mount" value="true"/>
+            <property key="registry.realpath" value="https://localhost:9443/registry/resourceContent?path=/_system/eiconfig/repository/components/secure-vault/sub"/>
+            <property key="test" value="val"/>
+         </properties>
+      </collection>
+   </artifact>
+   <artifact name="__system_config_repository_components_secure-vault_sub_setup6.txt" groupId="com.example.resource" version="1.0.0" type="registry/resource" serverRole="EnterpriseIntegrator">
+      <item>
+         <file>/_system/config/repository/components/secure-vault/sub/setup6.txt</file>
+         <path>/_system/config/repository/components/secure-vault/sub</path>
+         <mediaType>text/plain</mediaType>
+         <properties>
+            <property key="resource.source" value="AdminConsole"/>
+            <property key="registry.user" value="admin"/>
+            <property key="registry.author" value="wso2.system.user"/>
+            <property key="registry.link" value="true"/>
+            <property key="registry.mount" value="true"/>
+            <property key="registry.realpath" value="https://localhost:9443/registry/resourceContent?path=/_system/eiconfig/repository/components/secure-vault/sub/setup6.txt"/>
+         </properties>
+      </item>
+   </artifact>
+   <artifact name="__system_config_repository_components_secure-vault_setup6.txt" groupId="com.example.resource" version="1.0.0" type="registry/resource" serverRole="EnterpriseIntegrator">
+      <item>
+         <file>/_system/config/repository/components/secure-vault/setup6.txt</file>
+         <path>/_system/config/repository/components/secure-vault</path>
+         <mediaType>text/plain</mediaType>
+         <properties>
+            <property key="resource.source" value="AdminConsole"/>
+            <property key="registry.user" value="admin"/>
+            <property key="registry.author" value="wso2.system.user"/>
+            <property key="registry.link" value="true"/>
+            <property key="registry.mount" value="true"/>
+            <property key="registry.realpath" value="https://localhost:9443/registry/resourceContent?path=/_system/eiconfig/repository/components/secure-vault/setup6.txt"/>
+         </properties>
+      </item>
+   </artifact>
+   <artifact name="__system_config_repository_components_org.wso2.carbon.logging" groupId="com.example.resource" version="1.0.0" type="registry/resource" serverRole="EnterpriseIntegrator">
+      <collection>
+         <directory>/_system/config/repository/components/org.wso2.carbon.logging</directory>
+         <path>/_system/config/repository/components/org.wso2.carbon.logging</path>
+         <properties>
+            <property key="registry.user" value="admin"/>
+            <property key="registry.author" value="wso2.system.user"/>
+            <property key="registry.link" value="true"/>
+            <property key="registry.mount" value="true"/>
+            <property key="registry.realpath" value="https://localhost:9443/registry/resourceContent?path=/_system/eiconfig/repository/components/org.wso2.carbon.logging"/>
+         </properties>
+      </collection>
+   </artifact>
+</artifacts>

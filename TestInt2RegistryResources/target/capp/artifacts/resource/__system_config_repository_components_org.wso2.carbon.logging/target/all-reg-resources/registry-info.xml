@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><resources>
+    <collection>
+        <directory>org.wso2.carbon.logging</directory>
+        <path>/_system/config/repository/components/org.wso2.carbon.logging</path>
+    </collection>
+</resources>

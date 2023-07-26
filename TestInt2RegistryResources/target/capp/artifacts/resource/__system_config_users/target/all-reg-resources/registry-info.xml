@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><resources>
+    <collection>
+        <directory>users</directory>
+        <path>/_system/config/users</path>
+    </collection>
+</resources>

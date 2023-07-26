@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><resources>
+    <collection>
+        <directory>sub</directory>
+        <path>/_system/config/repository/components/secure-vault/sub</path>
+    </collection>
+</resources>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.example</groupId>
+  <artifactId>TestInt2RegistryResources_module</artifactId>
+  <version>1.0.0</version>
+  <packaging>pom</packaging>
+  <name>TestInt2RegistryResources_module</name>
+  <description>TestInt2RegistryResources_module</description>
+  <modules>
+    <module>artifacts/resource/__system_config_</module>
+    <module>artifacts/resource/__system_config_users</module>
+    <module>artifacts/resource/__system_config_repository</module>
+    <module>artifacts/resource/__system_config_repository_connection</module>
+    <module>artifacts/resource/__system_config_repository_esb</module>
+    <module>artifacts/resource/__system_config_repository_esb_esb-configurations</module>
+    <module>artifacts/resource/__system_config_repository_esb_registry</module>
+    <module>artifacts/resource/__system_config_repository_esb_inbound</module>
+    <module>artifacts/resource/__system_config_repository_components</module>
+    <module>artifacts/resource/__system_config_repository_components_secure-vault</module>
+    <module>artifacts/resource/__system_config_repository_components_secure-vault_sub</module>
+    <module>artifacts/resource/__system_config_repository_components_secure-vault_sub_setup6.txt</module>
+    <module>artifacts/resource/__system_config_repository_components_secure-vault_setup6.txt</module>
+    <module>artifacts/resource/__system_config_repository_components_org.wso2.carbon.logging</module>
+  </modules>
+</project>
