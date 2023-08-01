@@ -1,32 +1,30 @@
 pipeline {
-    agent any // run the pipeline on any available agent
+    agent any
+    environment {
+        DEV_MI_SERVER = 'http://localhost:8290'
+        TEST_MI_SERVER = 'http://localhost:8300'
+    }
     stages {
-        stage('Build') { // first stage: build the carbon application
+        stage('Build') {
             steps {
-                sh 'mvn clean install' // run Maven command to build the project
-                archiveArtifacts artifacts: 'TestInt2CompositeExporter/target/*.car' // archive the generated car file
+                sh 'mvn clean package' // Assuming your project uses Maven for building
+                archiveArtifacts artifacts: 'TestInt2CompositeExporter/target/*.car', onlyIfSuccessful: true
             }
         }
-        stage('Deploy') { // second stage: deploy the car file to different environments
-            parallel { // run the deployment steps in parallel
-                stage('Deploy to Dev') { // deploy to dev environment
-                    steps {
-                        sh '''
-                            # copy the car file to the dev server using SSH
-                            ssh wso2carbon@dev-server 'mkdir -p /home/wso2carbon/wso2mi-4.2.0/repository/deployment/server/carbonapps/'
-                            scp TestInt2CompositeExporter/target/TestInt2CompositeExporter_1.0.0.car wso2carbon@dev-server:/home/wso2carbon/wso2mi-4.2.0/repository/deployment/server/carbonapps/
-                        '''
-                    }
-                }
-                stage('Deploy to Test') { // deploy to test environment
-                    steps {
-                        // copy the car file to the test server using SSH
-                        sh '''
-                            ssh wso2carbon@test-server 'mkdir -p /home/wso2carbon/wso2mi-4.2.0/repository/deployment/server/carbonapps/'
-                            scp TestInt2CompositeExporter/target/TestInt2CompositeExporter_1.0.0.car wso2carbon@test-server:/home/wso2carbon/wso2mi-4.2.0/repository/deployment/server/carbonapps/
-                        '''
-                    }
-                }
+        stage('Deploy to Dev') {
+            when {
+                branch 'dev' // Change 'dev' to your desired branch name for the dev environment
+            }
+            steps {
+                sh "curl -X POST -F file=@TestInt2CompositeExporter/target/TestInt2CompositeExporter_1.0.0.car ${DEV_MI_SERVER}/carbonapps/"
+            }
+        }
+        stage('Deploy to Test') {
+            when {
+                branch 'test' // Change 'test' to your desired branch name for the test environment
+            }
+            steps {
+                sh "curl -X POST -F file=@TestInt2CompositeExporter/target/TestInt2CompositeExporter_1.0.0.car ${TEST_MI_SERVER}/carbonapps/"
             }
         }
     }
