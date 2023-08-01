@@ -11,15 +11,24 @@ pipeline {
             parallel { // run the deployment steps in parallel
                 stage('Deploy to Dev') { // deploy to dev environment
                     steps {
-                        sh 'docker cp TestInt2CompositeExporter/target/TestInt2CompositeExporter_1.0.0.car wso2mi-dev:/home/wso2carbon/wso2mi-4.2.0/repository/deployment/server/carbonapps/' // copy the car file to the dev server using Docker command
+                        sh '''
+                            # copy the car file to the dev server using SSH
+                            ssh wso2carbon@dev-server 'mkdir -p /home/wso2carbon/wso2mi-4.2.0/repository/deployment/server/carbonapps/'
+                            scp TestInt2CompositeExporter/target/TestInt2CompositeExporter_1.0.0.car wso2carbon@dev-server:/home/wso2carbon/wso2mi-4.2.0/repository/deployment/server/carbonapps/
+                        '''
                     }
                 }
                 stage('Deploy to Test') { // deploy to test environment
                     steps {
-                        sh 'docker cp TestInt2CompositeExporter/target/TestInt2CompositeExporter_1.0.0.car wso2mi-test:/home/wso2carbon/wso2mi-4.2.0/repository/deployment/server/carbonapps/' // copy the car file to the test server using Docker command
+                        // copy the car file to the test server using SSH
+                        sh '''
+                            ssh wso2carbon@test-server 'mkdir -p /home/wso2carbon/wso2mi-4.2.0/repository/deployment/server/carbonapps/'
+                            scp TestInt2CompositeExporter/target/TestInt2CompositeExporter_1.0.0.car wso2carbon@test-server:/home/wso2carbon/wso2mi-4.2.0/repository/deployment/server/carbonapps/
+                        '''
                     }
                 }
             }
         }
     }
 }
+
