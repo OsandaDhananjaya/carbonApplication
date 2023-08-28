@@ -1,4 +1,4 @@
-name: CI/CD Pipeline
+name: Build and Deploy Carbon App
 
 on:
   push:
@@ -13,14 +13,24 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
+      - name: Set up Java
+        uses: actions/setup-java@v2
         with:
-          node-version: '14'  # Choose your preferred Node.js version
+          java-version: 8 # You can change this to the desired Java version
 
-      - name: Install dependencies
-        run: npm install
+      - name: Set up Maven
+        uses: actions/setup-java@v2
+        with:
+          java-version: '3.6.3' # Use the specific Maven version you need
 
-      - name: Build application
-        run: npm run build  # Replace with your build command
+      - name: Build with Maven
+        run: |
+          mvn clean install -X
+        env:
+          MAVEN_OPTS: "-Dmaven.repo.local=./.m2/repository" # Customize this as needed
 
+      - name: Archive Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: carbon-app-artifact
+          path: TestInt2CompositeExporter/target/*.car
