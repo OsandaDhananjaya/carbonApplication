@@ -22,7 +22,7 @@ jobs:
       - name: Set up Maven
         uses: actions/setup-java@v2
         with:
-          java-version: '3.6.3' # Use the specific Maven version you need
+          java-version: '8' # Use the specific Maven version you need
           distribution: 'adopt'
 
       - name: Build with Maven
