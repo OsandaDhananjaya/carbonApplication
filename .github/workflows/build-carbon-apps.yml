@@ -3,24 +3,24 @@ name: Build Carbon Applications
 on:
   push:
     branches:
-      - main  # Adjust the branch name as needed
+      - main 
 
 jobs:
   build:
-    runs-on: ubuntu-latest  # You can change the runner as needed
+    runs-on: ubuntu-latest  
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v2  # This action checks out your code from the repository.
+        uses: actions/checkout@v2 
 
       - name: Set up Java
-        uses: actions/setup-java@v2  # This action sets up the Java environment.
+        uses: actions/setup-java@v2  
 
         with:
-          java-version: '11'  # You can change the Java version as needed.
+          java-version: '8'  
 
       - name: Build Carbon Applications
         run: |
-          cd TestInt2CompositeExporter  # Change to the root directory of your project.
-          mvn clean install  # Run the Maven build command to build your Carbon applications.
+          cd TestInt2CompositeExporter  
+          mvn clean install 
 
