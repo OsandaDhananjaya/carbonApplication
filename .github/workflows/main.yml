@@ -7,7 +7,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: Ubuntu 22.04.3 LTS
+    runs-on: Ubuntu-22.04.3
 
     steps:
     - name: Checkout code
