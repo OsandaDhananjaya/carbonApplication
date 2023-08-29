@@ -33,7 +33,7 @@ jobs:
       run: |
         if [ $? -ne 0 ]; then
           echo "Retrying the build..."
-          mvn clean install -f TestInt2CompositeExporter/pom.xml
+          mvn clean install -f pom.xml
         fi
 
     - name: Deploy to Dev Environment
