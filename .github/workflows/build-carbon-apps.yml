@@ -21,6 +21,6 @@ jobs:
 
       - name: Build Carbon Applications
         run: |
-          cd TestInt2CompositeExporter  
+          cd pom.xml  
           mvn clean install 
 
