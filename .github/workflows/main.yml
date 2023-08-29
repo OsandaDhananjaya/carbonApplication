@@ -18,6 +18,10 @@ jobs:
       with:
         distribution: 'temurin'
         java-version: '11' # You can adjust this to your Java version
+        
+    - name: Clean and Update Dependencies
+      run: mvn clean install -U -f TestInt2CompositeExporter/pom.xml
+
 
     - name: Build Maven project
       run: mvn clean install -f TestInt2CompositeExporter/pom.xml
