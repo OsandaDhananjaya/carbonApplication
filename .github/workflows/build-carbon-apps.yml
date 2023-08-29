@@ -21,6 +21,6 @@ jobs:
 
       - name: Build Carbon Applications
         run: |
-          cd TestInt2CompositeExporter/target  # Change to the directory where your Carbon applications are located.
+          cd TestInt2CompositeExporter  # Change to the root directory of your project.
           mvn clean install  # Run the Maven build command to build your Carbon applications.
 
