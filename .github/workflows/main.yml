@@ -16,7 +16,7 @@ jobs:
       uses: actions/setup-java@v2
       with:
         distribution: 'temurin'
-        java-version: '11' # You can adjust this to your Java version
+        java-version: '8' # You can adjust this to your Java version
 
     - name: Cache Maven Dependencies
       uses: actions/cache@v2
@@ -24,25 +24,16 @@ jobs:
         path: ~/.m2/repository
         key: ${{ runner.os }}-m2-${{ hashFiles('**/*.xml') }}
         
-    - name: Install Maven
-      run: |
-        wget https://archive.apache.org/dist/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz
-        tar xf apache-maven-3.6.3-bin.tar.gz
-        export MAVEN_HOME=$PWD/apache-maven-3.6.3
-        echo "MAVEN_HOME=$MAVEN_HOME" >> $GITHUB_ENV
-        export PATH=$MAVEN_HOME/bin:$PATH
-        echo "PATH=$PATH" >> $GITHUB_ENV
 
-    - name: Maven Build
-      run: mvn clean install -X
+    - name: Build Maven project
+      run: mvn clean install -f pom.xml
 
     - name: Retry on Failure
       run: |
         if [ $? -ne 0 ]; then
           echo "Retrying the build..."
-          mvn clean install -X
+          mvn clean install -f pom.xml
         fi
-
     - name: Deploy to Dev Environment
       run: scp -r TestInt2CompositeExporter/target/*.car user@dev-server:/Desktop/Dev/wso2mi-4.2.0/repository/deployment/server/carbonapps
       # This step uses the `scp` command to copy the generated .car file to the Dev environment. Replace `user` and `dev-server` with your actual credentials.
