@@ -24,15 +24,19 @@ jobs:
         path: ~/.m2/repository
         key: ${{ runner.os }}-m2-${{ hashFiles('**/*.xml') }}
         
-
-    - name: Build Maven project
-      run: mvn clean install -f pom.xml
+    - name: Maven Build
+      env:
+        MAVEN_HOME: ${{ github.workspace }}/apache-maven-3.6.3
+        JAVA_HOME: /usr/lib/jvm/java-8-openjdk-amd64
+      run: |
+        mvnCMD="${MAVEN_HOME}/bin/mvn"
+        ${mvnCMD} clean install -X
 
     - name: Retry on Failure
       run: |
         if [ $? -ne 0 ]; then
           echo "Retrying the build..."
-          mvn clean install -f pom.xml
+          ${mvnCMD} clean install -X
         fi
 
     - name: Deploy to Dev Environment
