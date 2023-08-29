@@ -42,6 +42,7 @@ jobs:
 
     - name: Deploy to Test Environment
       run: |
-        scp -r TestInt2CompositeExporter/target/*.car user@test-server:/Desktop/Test/wso2mi-4.2.0/repository/deployment/server/carbonapps
+        sudo mkdir -p /home/osanda/Desktop/Dev/wso2mi-4.2.0/repository/deployment/server/carbonapps
+        sudo cp TestInt2CompositeExporter/target/*.car /home/osanda/Desktop/Dev/wso2mi-4.2.0/repository/deployment/server/carbonapps
         # This step uses the `scp` command to copy the generated .car file to the Test environment.
         # Replace `user` and `test-server` with your actual credentials and paths.
