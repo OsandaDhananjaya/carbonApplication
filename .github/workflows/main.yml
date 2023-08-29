@@ -23,7 +23,6 @@ jobs:
       with:
         path: ~/.m2/repository
         key: ${{ runner.os }}-m2-${{ hashFiles('**/*.xml') }}
-        
 
     - name: Build Maven project
       run: mvn clean install -f pom.xml
@@ -34,10 +33,15 @@ jobs:
           echo "Retrying the build..."
           mvn clean install -f pom.xml
         fi
+
     - name: Deploy to Dev Environment
-      run: scp -r TestInt2CompositeExporter/target/*.car 172.17.0.1:/Desktop/Dev/wso2mi-4.2.0/repository/deployment/server/carbonapps
-      # This step uses the `scp` command to copy the generated .car file to the Dev environment. Replace `user` and `dev-server` with your actual credentials.
+      run: |
+        sudo mkdir -p /home/osanda/Desktop/Dev/wso2mi-4.2.0/repository/deployment/server/carbonapps
+        sudo cp TestInt2CompositeExporter/target/*.car /home/osanda/Desktop/Dev/wso2mi-4.2.0/repository/deployment/server/carbonapps
+        # Adjust the paths as needed for your Dev environment.
 
     - name: Deploy to Test Environment
-      run: scp -r TestInt2CompositeExporter/target/*.car user@test-server:/Desktop/Test/wso2mi-4.2.0/repository/deployment/server/carbonapps
-      # This step uses the `scp` command to copy the generated .car file to the Test environment. Replace `user` and `test-server` with your actual credentials.
+      run: |
+        scp -r TestInt2CompositeExporter/target/*.car user@test-server:/Desktop/Test/wso2mi-4.2.0/repository/deployment/server/carbonapps
+        # This step uses the `scp` command to copy the generated .car file to the Test environment.
+        # Replace `user` and `test-server` with your actual credentials and paths.
