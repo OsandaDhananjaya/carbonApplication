@@ -27,7 +27,7 @@ jobs:
         
 
     - name: Build Maven project
-      run: mvn clean install -f TestInt2CompositeExporter/pom.xml
+      run: mvn clean install -f pom.xml
 
     - name: Retry on Failure
       run: |
