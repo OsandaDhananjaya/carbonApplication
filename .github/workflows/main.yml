@@ -16,7 +16,8 @@ jobs:
       - name: Set up Java
         uses: actions/setup-java@v2
         with:
-          java-version: '11'  # Adjust the Java version as needed
+          distribution: 'temurin'
+          java-version: '11' 
 
       - name: Build Carbon Application
         run: |
