@@ -1,63 +1,31 @@
-name: Build and Deploy Carbon Application
+name: Deploy Carbon App to WSO2 MI
 
 on:
   push:
     branches:
-      - main  # Adjust the branch name as needed
+      - main
 
 jobs:
-  build:
-    runs-on: ubuntu-latest  # You can change the runner as needed
-
-    steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v2
-
-      - name: Set up Java
-        uses: actions/setup-java@v2
-        with:
-          distribution: 'temurin'
-          java-version: '11' 
-
-      - name: Build Carbon Application
-        run: |
-          mvn clean install -X
-        working-directory: ./  # Assuming your project's root directory contains the Maven project
-
-      - name: Archive Artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: carbon-app
-          path: TestInt2CompositeExporter/target/*.car
-
-  deploy-dev:
+  deploy:
     runs-on: ubuntu-latest
 
-    needs: build  # This job depends on the 'build' job
-
     steps:
-      - name: Create Dev Directory
-        run: |
-          sudo mkdir -p /home/osanda/Desktop/Dev/wso2mi-4.2.0/repository/deployment/server/carbonapps
-        shell: bash
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-      - name: Copy Artifact to Dev
-        run: |
-          sudo cp ${{ needs.build.outputs.artifacts_path }}/carbon-app/*.car /home/osanda/Desktop/Dev/wso2mi-4.2.0/repository/deployment/server/carbonapps
-        shell: bash
+    - name: Set up Java
+      uses: actions/setup-java@v2
+      with:
+        java-version: '11' # You can adjust this to your Java version
 
-  deploy-test:
-    runs-on: ubuntu-latest
+    - name: Build Maven project
+      run: mvn clean install -f TestInt2CompositeExporter/pom.xml
+      # This step checks out your code, sets up Java, and builds the Maven project using the specified POM file.
 
-    needs: build  # This job depends on the 'build' job
+    - name: Deploy to Dev Environment
+      run: scp -r TestInt2CompositeExporter/target/*.car user@dev-server:/Desktop/Dev/wso2mi-4.2.0/repository/deployment/server/carbonapps
+      # This step uses the `scp` command to copy the generated .car file to the Dev environment. Replace `user` and `dev-server` with your actual credentials.
 
-    steps:
-      - name: Create Test Directory
-        run: |
-          sudo mkdir -p /home/osanda/Desktop/Test/wso2mi-4.2.0/repository/deployment/server/carbonapps
-        shell: bash
-
-      - name: Copy Artifact to Test
-        run: |
-          sudo cp ${{ needs.build.outputs.artifacts_path }}/carbon-app/*.car /home/osanda/Desktop/Test/wso2mi-4.2.0/repository/deployment/server/carbonapps
-        shell: bash
+    - name: Deploy to Test Environment
+      run: scp -r TestInt2CompositeExporter/target/*.car user@test-server:/Desktop/Test/wso2mi-4.2.0/repository/deployment/server/carbonapps
+      # This step uses the `scp` command to copy the generated .car file to the Test environment. Replace `user` and `test-server` with your actual credentials.
