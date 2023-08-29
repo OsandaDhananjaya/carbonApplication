@@ -18,14 +18,25 @@ jobs:
       with:
         distribution: 'temurin'
         java-version: '11' # You can adjust this to your Java version
+
+    - name: Cache Maven Dependencies
+      uses: actions/cache@v2
+      with:
+        path: ~/.m2/repository
+        key: ${{ runner.os }}-m2-${{ hashFiles('**/*.xml') }}
         
     - name: Clean and Update Dependencies
       run: mvn clean install -U -f TestInt2CompositeExporter/pom.xml
 
-
     - name: Build Maven project
       run: mvn clean install -f TestInt2CompositeExporter/pom.xml
-      # This step checks out your code, sets up Java, and builds the Maven project using the specified POM file.
+
+    - name: Retry on Failure
+      run: |
+        if [ $? -ne 0 ]; then
+          echo "Retrying the build..."
+          mvn clean install -f TestInt2CompositeExporter/pom.xml
+        fi
 
     - name: Deploy to Dev Environment
       run: scp -r TestInt2CompositeExporter/target/*.car user@dev-server:/Desktop/Dev/wso2mi-4.2.0/repository/deployment/server/carbonapps
