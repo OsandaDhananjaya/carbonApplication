@@ -42,4 +42,4 @@ jobs:
         cp -r ${{ github.workspace }}/TestInt2CompositeExporter/target/* ~/local-deployment/
         
         # Assuming you have WSO2 MI installed locally, deploy the Carbon application
-        /Desktop/Dev/wso2mi-4.2.0/bin/micro-integrator.sh deploy ~/local-deployment/YourApp.car
+        cp -r ~/local-deployment/* /Desktop/Dev/wso2mi-4.2.0/repository/deployment/server/carbonapps/
