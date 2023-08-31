@@ -32,17 +32,15 @@ jobs:
       with:     
         name: build-artifacts   
         path: ${{ github.workspace }}/TestInt2CompositeExporter/target
-        
+
     - name: Deploy Locally
       run: |
-        # Create the target directory if it doesn't exist
-        mkdir -p /Desktop/Dev/wso2mi-4.2.0/repository/deployment/server/carbonapps/
-        
-        # Create a directory for deployment if it doesn't exist
+        # Create a directory for deployment if it doesn't exist in your home directory
         mkdir -p ~/local-deployment
         
-        # Copy the built Carbon application artifacts from the GitHub Actions artifact
+        # Copy the built Carbon application artifacts from the GitHub Actions artifact to the deployment directory
         cp -r ${{ github.workspace }}/TestInt2CompositeExporter/target/* ~/local-deployment/
         
-        # Assuming you have WSO2 MI installed locally, deploy the Carbon application
-        cp -r ~/local-deployment/* /Desktop/Dev/wso2mi-4.2.0/repository/deployment/server/carbonapps/
+        # Assuming you have WSO2 MI installed locally, deploy the Carbon application to its appropriate location
+        # Replace /path/to/wso2mi-4.2.0/ with the actual path to your WSO2 MI installation
+        cp -r ~/local-deployment/* /home/osanda/Desktop/wso2mi-4.2.0/repository/deployment/server/carbonapps/
