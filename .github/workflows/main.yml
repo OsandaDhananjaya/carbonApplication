@@ -27,13 +27,20 @@ jobs:
     - name: Build Maven project
       run: mvn clean install -f pom.xml
 
-    - name: Commit and Push Artifacts
-      env:
-        JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/8.0.382-5/x64
-        PAT2: ${{ secrets.PAT2 }}
-      run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git add TestInt2CompositeExporter/target  # Replace with the actual path to your built Carbon application files
-        git commit -m "Add built Carbon application"
-        git push https://$PAT2@github.com/osandaDhananjaya/carbonApplication.git HEAD:main  # Replace with your GitHub username and repository name
+    # Commented out section for Commit and Push Artifacts
+    # - name: Commit and Push Artifacts
+    #   env:
+    #     JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/8.0.382-5/x64
+    #     PAT2: ${{ secrets.PAT2 }}
+    #   run: |
+    #     git config --local user.email "action@github.com"
+    #     git config --local user.name "GitHub Action"
+    #     git add TestInt2CompositeExporter/target  # Replace with the actual path to your built Carbon application files
+    #     git commit -m "Add built Carbon application"
+    #     git push https://$PAT2@github.com/osandaDhananjaya/carbonApplication.git HEAD:main  # Replace with your GitHub username and repository name
+
+    - name: Upload Artifacts 
+      uses: actions/upload-artifact@v2   
+      with:     
+        name: build-artifacts   
+        path: ${{ github.workspace }}/TestInt2CompositeExporter/target
