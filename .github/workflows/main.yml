@@ -34,6 +34,6 @@ jobs:
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git add path/to/your/artifact  # Replace with the actual path to your built Carbon application files
+        git add TestInt2CompositeExporter/target  # Replace with the actual path to your built Carbon application files
         git commit -m "Add built Carbon application"
         git push https://$GH_PAT@github.com/osandaDhananjaya/carbonApplication.git HEAD:main  # Replace with your GitHub username and repository name
