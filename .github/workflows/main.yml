@@ -32,9 +32,12 @@ jobs:
       with:     
         name: build-artifacts   
         path: ${{ github.workspace }}/TestInt2CompositeExporter/target
-
+        
     - name: Deploy Locally
       run: |
+        # Create the target directory if it doesn't exist
+        mkdir -p /Desktop/Dev/wso2mi-4.2.0/repository/deployment/server/carbonapps/
+        
         # Create a directory for deployment if it doesn't exist
         mkdir -p ~/local-deployment
         
