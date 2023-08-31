@@ -27,20 +27,10 @@ jobs:
     - name: Build Maven project
       run: mvn clean install -f pom.xml
 
-    - name: Retry on Failure
+    - name: Commit and Push Artifacts
       run: |
-        if [ $? -ne 0 ]; then
-          echo "Retrying the build..."
-          mvn clean install -f pom.xml
-        fi
-
-    - name: Deploy to Dev Environment
-      run: |
-        sudo mkdir -p /home/osanda/Desktop/Dev/wso2mi-4.2.0/repository/deployment/server/carbonapps
-        sudo cp TestInt2CompositeExporter/target/*.car /home/osanda/Desktop/Dev/wso2mi-4.2.0/repository/deployment/server/carbonapps
-
-    - name: Deploy to Test Environment
-      run: |
-        sudo mkdir -p /home/osanda/Desktop/Test/wso2mi-4.2.0/repository/deployment/server/carbonapps
-        sudo cp TestInt2CompositeExporter/target/*.car /home/osanda/Desktop/Test/wso2mi-4.2.0/repository/deployment/server/carbonapps
-       
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add TestInt2CompositeExporter/target
+        git commit -m "Add built Carbon application"
+        git push
