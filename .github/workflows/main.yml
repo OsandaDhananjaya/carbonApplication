@@ -30,7 +30,7 @@ jobs:
     - name: Commit and Push Artifacts
       env:
         JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/8.0.382-5/x64
-        GH_PAT: ${{ secrets.PAT2 }}
+        PAT2: ${{ secrets.PAT2 }}
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
