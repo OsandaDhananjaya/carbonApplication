@@ -27,10 +27,19 @@ jobs:
     - name: Build Maven project
       run: mvn clean install -f pom.xml
 
-
-
     - name: Upload Artifacts 
       uses: actions/upload-artifact@v2   
       with:     
         name: build-artifacts   
         path: ${{ github.workspace }}/TestInt2CompositeExporter/target
+
+    - name: Deploy Locally
+      run: |
+        # Create a directory for deployment if it doesn't exist
+        mkdir -p ~/local-deployment
+        
+        # Copy the built Carbon application artifacts from the GitHub Actions artifact
+        cp -r ${{ github.workspace }}/TestInt2CompositeExporter/target/* ~/local-deployment/
+        
+        # Assuming you have WSO2 MI installed locally, deploy the Carbon application
+        /Desktop/Dev/wso2mi-4.2.0/bin/micro-integrator.sh deploy ~/local-deployment/YourApp.car
