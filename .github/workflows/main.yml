@@ -28,9 +28,12 @@ jobs:
       run: mvn clean install -f pom.xml
 
     - name: Commit and Push Artifacts
+      env:
+        JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/8.0.382-5/x64
+        GH_PAT: ${{ secrets.GH_PAT }}
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git add TestInt2CompositeExporter/target
+        git add path/to/your/artifact  # Replace with the actual path to your built Carbon application files
         git commit -m "Add built Carbon application"
-        git push
+        git push https://$GH_PAT@github.com/osandaDhananjaya/carbonApplication.git HEAD:main  # Replace with your GitHub username and repository name
