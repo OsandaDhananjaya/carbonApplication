@@ -27,14 +27,18 @@ jobs:
           key: ${{ runner.os }}-m2-${{ hashFiles('**/*.xml') }}
 
       - name: Build Maven project
-        run: mvn clean install -f pom.xml
+        run: |  
+           mvn clean install -f pom.xml
+           mkdir -p ${{ github.workspace }}/artifacts               
+
+      
 
       - name: Upload Artifacts 
         uses: actions/upload-artifact@v2   
         with:     
           name: Carbon Application
-          path: TestInt2CompositeExporter/targettest
-          #path: ${{ github.workspace }}/TestInt2CompositeExporter/targettest
+          #path: TestInt2CompositeExporter/targettest
+          path: ${{ github.workspace }}/artifacts
 
   CopyCarbonApps:
     name: Collect artifact and send to image repo
