@@ -32,7 +32,7 @@ jobs:
       - name: Upload Artifacts 
         uses: actions/upload-artifact@v2   
         with:     
-          name: TestInt2CompositeExporter_1.0.0.car 
+          name: Carbon Application
           path: TestInt2CompositeExporter/targettest
           #path: ${{ github.workspace }}/TestInt2CompositeExporter/targettest
 
