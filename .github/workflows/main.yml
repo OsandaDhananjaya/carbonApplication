@@ -27,9 +27,21 @@ jobs:
           key: ${{ runner.os }}-m2-${{ hashFiles('**/*.xml') }}
 
       - name: Build Maven project
+        run: mvn clean install -f pom.xml
+
+      - name: Copy CAR files to ${{ github.workspace }}/artifacts
         run: |
-          mvn clean install -f pom.xml
           mkdir -p ${{ github.workspace }}/artifacts
+          find . -type f -name "*.car" -exec cp {} ${{ github.workspace }}/artifacts \;
+
+      - name: Print CAR files in ${{ github.workspace }}/artifacts
+        run: |
+          ls ${{ github.workspace }}/artifacts
+
+      - name: Zipping CAR files in ${{ github.workspace }}/artifacts for release
+        
+        run: |
+          cd ${{ github.workspace }} && zip -r carbonapps.zip artifacts/*
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v2
