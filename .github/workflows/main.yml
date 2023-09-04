@@ -47,7 +47,7 @@ jobs:
         env:
           API_TOKEN_GITHUB: ${{ secrets.OsandaW }}
         with:
-          source_file: 'buid-artifacts' 
+          source_file: './TestInt2CompositeExporter/target/TestInt2CompositeExporter_1.0.0.car' 
           destination_repo: 'OsandaDhananjaya/wso2mi' 
           destination_folder: 'repository/deployment/server/carbonapps'
           user_name: 'osandaDhananjaya'
