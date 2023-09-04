@@ -33,4 +33,21 @@ jobs:
         name: build-artifacts   
         path: ${{ github.workspace }}/TestInt2CompositeExporter/target
 
-   
+  CopyCarbonApps:
+    name: Collect artifact and send to image repo
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: build-artifacts # Make sure this matches the name used in the upload step.
+
+      - name: Push to docker droppings dir
+        uses: dmnemec/copy_file_to_another_repo_action@v1.0.4
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.OsandaW }}
+        with:
+          source_file: './TestInt2CompositeExporter/target/TestInt2CompositeExporter_1.0.0.car' # Corrected source path
+          destination_repo: 'OsandaDhananjaya/wso2mi' # Updated destination_repo
+          destination_folder: 'repository/deployment/server/carbonapps'
+          user_name: 'osandaDhananjaya'
