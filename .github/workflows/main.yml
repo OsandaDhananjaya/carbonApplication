@@ -4,34 +4,36 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'carbonApplication/TestInt2CompositeExporter/**'
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Set up Java
-      uses: actions/setup-java@v2
-      with:
-        distribution: 'temurin'
-        java-version: '8'
+      - name: Set up Java
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'temurin'
+          java-version: '8'
 
-    - name: Cache Maven Dependencies
-      uses: actions/cache@v2
-      with:
-        path: ~/.m2/repository
-        key: ${{ runner.os }}-m2-${{ hashFiles('**/*.xml') }}
+      - name: Cache Maven Dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/*.xml') }}
 
-    - name: Build Maven project
-      run: mvn clean install -f pom.xml
+      - name: Build Maven project
+        run: mvn clean install -f pom.xml
 
-    - name: Upload Artifacts 
-      uses: actions/upload-artifact@v2   
-      with:     
-        name: TestInt2CompositeExporter_1.0.0.car   
-        path: ${{ github.workspace }}/TestInt2CompositeExporter/targettest
+      - name: Upload Artifacts 
+        uses: actions/upload-artifact@v2   
+        with:     
+          name: TestInt2CompositeExporter_1.0.0.car   
+          path: ${{ github.workspace }}/TestInt2CompositeExporter/targettest
 
   CopyCarbonApps:
     name: Collect artifact and send to image repo
