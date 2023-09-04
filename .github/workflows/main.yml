@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - 'carbonApplication/TestInt2CompositeExporter/**'
+      - 'TestInt2CompositeExporter/**'
 
 jobs:
   deploy:
