@@ -74,10 +74,10 @@ jobs:
           asset_name: carbonapps-release.zip
           asset_content_type: application/octet-stream
 
-      - name: Download artifacts
-        uses: actions/download-artifact@v2
-        with:
-          name: build-artifacts
+      # - name: Download artifacts
+      #   uses: actions/download-artifact@v2
+      #   with:
+      #     name: build-artifacts
 
       - name: Push to docker droppings dir
         uses: dmnemec/copy_file_to_another_repo_action@v1.0.4
