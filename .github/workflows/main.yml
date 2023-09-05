@@ -86,7 +86,9 @@ jobs:
         env:
           API_TOKEN_GITHUB: ${{ secrets.OsandaW }}
         with:
-          source_file: './TestInt2CompositeExporter/target/TestInt2CompositeExporter_1.0.0.car'
+          source_file: '{{github.workspace }}/artifacts'
           destination_repo: 'OsandaDhananjaya/wso2mi'
           destination_folder: 'repository/deployment/server/carbonapps'
           user_name: 'osandaDhananjaya'
+          commit_message: 'Copy CAR file from TestInt2CompositeExporter'
+
