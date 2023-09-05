@@ -4,8 +4,7 @@ on:
   push:
     branches:
       - main
-    paths:
-      - 'TestInt2CompositeExporter/**'
+  
 
 jobs:
   deploy:
@@ -82,7 +81,7 @@ jobs:
       - name: Push to docker droppings dir
         uses: dmnemec/copy_file_to_another_repo_action@v1.0.4
         env:
-          API_TOKEN_GITHUB: ${{ secrets.OsandaW }}
+          API_TOKEN_GITHUB: ${{ secrets.MAVEN_PAT}}
         with:
           source_file: '${{ github.workspace }}/artifacts'
           destination_repo: 'OsandaDhananjaya/wso2mi'
