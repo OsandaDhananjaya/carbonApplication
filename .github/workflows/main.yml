@@ -33,13 +33,15 @@ jobs:
         run: |
           mkdir -p ${{ github.workspace }}/artifacts
           find . -type f -name "*.car" -exec cp {} ${{ github.workspace }}/artifacts \;
+
       - name: Print CAR files in ${{ github.workspace }}/artifacts
         run: |
           ls ${{ github.workspace }}/artifacts
+
       - name: Zipping CAR files in ${{ github.workspace }}/artifacts for release
-        
         run: |
           cd ${{ github.workspace }} && zip -r carbonapps.zip artifacts/*
+
       - name: Upload Artifacts
         uses: actions/upload-artifact@v2
         with:
@@ -72,10 +74,6 @@ jobs:
           asset_name: carbonapps-release.zip
           asset_content_type: application/octet-stream
 
-  CopyCarbonApps:
-    name: Collect artifact and send to image repo
-    runs-on: ubuntu-latest
-    steps:
       - name: Download artifacts
         uses: actions/download-artifact@v2
         with:
@@ -86,9 +84,8 @@ jobs:
         env:
           API_TOKEN_GITHUB: ${{ secrets.OsandaW }}
         with:
-          source_file: '{{github.workspace }}/artifacts'
+          source_file: '${{ github.workspace }}/artifacts'
           destination_repo: 'OsandaDhananjaya/wso2mi'
           destination_folder: 'repository/deployment/server/carbonapps'
           user_name: 'osandaDhananjaya'
           commit_message: 'Copy CAR file from TestInt2CompositeExporter'
-
