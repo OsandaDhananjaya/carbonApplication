@@ -24,7 +24,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ~/.m2/repository
-          key: ${{ runner.os }}-m2-${{ hashFiles('**/*.xml') }}
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }} # Use only pom.xml for cache key
 
       - name: Build Maven project
         run: mvn clean install -f pom.xml
@@ -33,21 +33,17 @@ jobs:
         run: |
           mkdir -p ${{ github.workspace }}/artifacts
           find . -type f -name "*.car" -exec cp {} ${{ github.workspace }}/artifacts \;
-
       - name: Print CAR files in ${{ github.workspace }}/artifacts
         run: |
           ls ${{ github.workspace }}/artifacts
-
       - name: Zipping CAR files in ${{ github.workspace }}/artifacts for release
-        
         run: |
           cd ${{ github.workspace }} && zip -r carbonapps.zip artifacts/*
-
       - name: Upload Artifacts
         uses: actions/upload-artifact@v2
         with:
           name: Carbon Application
-          path: ${{ github.workspace }}/artifacts
+          path: ${{ github.workspace }}/carbonapps.zip
 
       - name: Generate Timestamp
         id: timestamp_step
@@ -60,8 +56,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.MAVEN_PAT }}
           ENVIRONMENT: "dev"
         with:
-          tag_name: "${{env.ENVIRONMENT}}-${{ steps.timestamp_step.outputs.TIMESTAMP }}"   # Set the appropriate tag for your release
-          release_name: "Release ${{env.ENVIRONMENT}} : ${{ steps.timestamp_step.outputs.TIMESTAMP }}"  # Set the release name
+          tag_name: "${{env.ENVIRONMENT}}-${{ steps.timestamp_step.outputs.TIMESTAMP }}"
+          release_name: "Release ${{env.ENVIRONMENT}} : ${{ steps.timestamp_step.outputs.TIMESTAMP }}"
           draft: false
           prerelease: false
 
@@ -82,14 +78,14 @@ jobs:
       - name: Download artifacts
         uses: actions/download-artifact@v2
         with:
-          name: build-artifacts
+          name: Carbon Application
 
       - name: Push to docker droppings dir
         uses: dmnemec/copy_file_to_another_repo_action@v1.0.4
         env:
           API_TOKEN_GITHUB: ${{ secrets.OsandaW }}
         with:
-          source_file: './TestInt2CompositeExporter/target/TestInt2CompositeExporter_1.0.0.car'
+          source_file: './carbonapps.zip' # Update source file path
           destination_repo: 'OsandaDhananjaya/wso2mi'
           destination_folder: 'repository/deployment/server/carbonapps'
           user_name: 'osandaDhananjaya'
