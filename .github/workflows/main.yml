@@ -87,4 +87,4 @@ jobs:
           destination_repo: 'OsandaDhananjaya/wso2mi'
           destination_folder: 'repository/deployment/server/carbonapps'
           user_name: 'osandaDhananjaya'
-          commit_message: 'Copy CAR file from TestInt2CompositeExporter'
+          commit_message: 'Copy CAR file from Releases'
