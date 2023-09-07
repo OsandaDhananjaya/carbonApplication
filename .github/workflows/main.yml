@@ -29,8 +29,8 @@ jobs:
 
       - name: Copy CAR files to destination directory
         run: |
-          find . -type f -name "*.car" -exec cp {} /Home/Osanda/Desktop/Test/wso2mi-4.2.0/repository/deployment/server/carbonapps/ \;
+          find . -type f -name "*.car" -exec cp {} /home/osanda/Desktop/Test/wso2mi-4.2.0/repository/deployment/server/carbonapps/ \;
 
       - name: Print CAR files in destination directory
         run: |
-          ls /Home/Osanda/Desktop/Test/wso2mi-4.2.0/repository/deployment/server/carbonapps/
+          ls /home/osanda/Desktop/Test/wso2mi-4.2.0/repository/deployment/server/carbonapps/
