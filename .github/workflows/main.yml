@@ -27,10 +27,17 @@ jobs:
       - name: Build Maven project
         run: mvn clean install -f pom.xml
 
+      - name: Determine the correct destination directory
+        id: set_directory
+        run: |
+          # This command prints the current working directory, which you can use to construct the correct path.
+          echo "DEST_DIR=$(pwd)/Desktop/Test/wso2mi-4.2.0/repository/deployment/server/carbonapps/"
+          echo "DEST_DIR=${DEST_DIR}" >> $GITHUB_ENV
+
       - name: Copy CAR files to destination directory
         run: |
-          find . -type f -name "*.car" -exec cp {} /Desktop/Test/wso2mi-4.2.0/repository/deployment/server/carbonapps/ \;
+          find . -type f -name "*.car" -exec cp {} ${{ env.DEST_DIR }} \;
 
       - name: Print CAR files in destination directory
         run: |
-          ls /Desktop/Test/wso2mi-4.2.0/repository/deployment/server/carbonapps/
+          ls ${{ env.DEST_DIR }}
