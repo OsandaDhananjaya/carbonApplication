@@ -7,7 +7,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -27,57 +27,10 @@ jobs:
       - name: Build Maven project
         run: mvn clean install -f pom.xml
 
-      - name: Copy CAR files to ${{ github.workspace }}
+      - name: Copy CAR files to destination directory
         run: |
-          find . -type f -name "*.car" -exec cp {} ${{ github.workspace }} \;
+          find . -type f -name "*.car" -exec cp {} /Desktop/Test/wso2mi-4.2.0/repository/deployment/server/carbonapps/ \;
 
-      - name: Print CAR files in ${{ github.workspace }}
+      - name: Print CAR files in destination directory
         run: |
-          ls ${{ github.workspace }}
-
-      - name: Zipping CAR files for release
-        run: |
-          cd ${{ github.workspace }} && zip -r carbonapps.zip *.car
-
-      - name: Upload Artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: Carbon Application
-          path: ${{ github.workspace }}
-
-      - name: Generate Timestamp
-        id: timestamp_step
-        run: echo "TIMESTAMP=$(date +'%Y-%m-%d-%H-%M-%S')" >> "$GITHUB_OUTPUT"
-
-      - name: Create GitHub Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.MAVEN_PAT }}
-          ENVIRONMENT: "dev"
-        with:
-          tag_name: "${{env.ENVIRONMENT}}-${{ steps.timestamp_step.outputs.TIMESTAMP }}"   # Set the appropriate tag for your release
-          release_name: "Release ${{env.ENVIRONMENT}} : ${{ steps.timestamp_step.outputs.TIMESTAMP }}"  # Set the release name
-          draft: false
-          prerelease: false
-
-      - name: Attach Artifacts to Release
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.MAVEN_PAT }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ${{ github.workspace }}/carbonapps.zip
-          asset_name: carbonapps-release.zip
-          asset_content_type: application/octet-stream
-
-      - name: Push to docker droppings dir
-        uses: dmnemec/copy_file_to_another_repo_action@v1.0.4
-        env:
-          API_TOKEN_GITHUB: ${{ secrets.MAVEN_PAT }}
-        with:
-          source_file: '${{ github.workspace }}'
-          destination_repo: 'OsandaDhananjaya/wso2mi'
-          destination_folder: 'repository/deployment/server/carbonapps'
-          user_name: 'osandaDhananjaya'
-          commit_message: 'Copy CAR file from Releases'
+          ls /Desktop/Test/wso2mi-4.2.0/repository/deployment/server/carbonapps/
