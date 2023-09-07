@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-  
 
 jobs:
   deploy:
@@ -28,24 +27,23 @@ jobs:
       - name: Build Maven project
         run: mvn clean install -f pom.xml
 
-      - name: Copy CAR files to ${{ github.workspace }}/artifacts
+      - name: Copy CAR files to ${{ github.workspace }}
         run: |
-          mkdir -p ${{ github.workspace }}/artifacts
-          find . -type f -name "*.car" -exec cp {} ${{ github.workspace }}/artifacts \;
+          find . -type f -name "*.car" -exec cp {} ${{ github.workspace }} \;
 
-      - name: Print CAR files in ${{ github.workspace }}/artifacts
+      - name: Print CAR files in ${{ github.workspace }}
         run: |
-          ls ${{ github.workspace }}/artifacts
+          ls ${{ github.workspace }}
 
-      - name: Zipping CAR files in ${{ github.workspace }}/artifacts for release
+      - name: Zipping CAR files for release
         run: |
-          cd ${{ github.workspace }} && zip -r carbonapps.zip artifacts/*
+          cd ${{ github.workspace }} && zip -r carbonapps.zip *.car
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v2
         with:
           name: Carbon Application
-          path: ${{ github.workspace }}/artifacts
+          path: ${{ github.workspace }}
 
       - name: Generate Timestamp
         id: timestamp_step
@@ -73,17 +71,12 @@ jobs:
           asset_name: carbonapps-release.zip
           asset_content_type: application/octet-stream
 
-      # - name: Download artifacts
-      #   uses: actions/download-artifact@v2
-      #   with:
-      #     name: build-artifacts
-
       - name: Push to docker droppings dir
         uses: dmnemec/copy_file_to_another_repo_action@v1.0.4
         env:
-          API_TOKEN_GITHUB: ${{ secrets.MAVEN_PAT}}
+          API_TOKEN_GITHUB: ${{ secrets.MAVEN_PAT }}
         with:
-          source_file: '${{ github.workspace }}/artifacts'
+          source_file: '${{ github.workspace }}'
           destination_repo: 'OsandaDhananjaya/wso2mi'
           destination_folder: 'repository/deployment/server/carbonapps'
           user_name: 'osandaDhananjaya'
